@@ -34,7 +34,8 @@ app.use(cors({
     "http://localhost:5173",
     "http://localhost:3001",
     "http://localhost:3002",
-    "http://192.168.1.3:3002"
+    "http://192.168.1.3:3002",
+    "https://job-listing-portal-web.vercel.app"
   ],
   credentials: true,
 }));
