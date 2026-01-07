@@ -12,7 +12,9 @@ import ApplicantRoutes from "./ApplicantRoutes.js";
 import { connectGridFS } from "./gridfs/gridfs.js";
 import profileRoutes from "./profile/profileRoutes.js";
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config(); 
+}
 // Storage for resume files
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -38,6 +40,8 @@ app.use(cors({
     "https://job-listing-portal-web.vercel.app"
   ],
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
 app.use(express.json());
