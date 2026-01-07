@@ -37,7 +37,7 @@ app.use(cors({
     "http://localhost:3001",
     "http://localhost:3002",
     "http://192.168.1.3:3002",
-    "https://job-listing-portal-web.vercel.app"
+    "https://job-listing-portal-web-git-main-larvias-projects-c2bc6b5d.vercel.app"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
