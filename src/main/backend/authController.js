@@ -34,6 +34,7 @@ export const signupUser = async (req, res) => {
     });
 
     return res.status(201).json({
+      success: true,
       message: 'Registration successful',
       email: user.email,
       role: user.role // ✅ ADDED (safe, optional but useful)

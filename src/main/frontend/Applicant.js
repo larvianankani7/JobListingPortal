@@ -24,15 +24,15 @@ export default function Applicant() {
     }
 
     try {
-      const res = await fetch(`${BACKEND_URL}/signup`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password, role: 'applicant' }),
+      const res = await fetch(`${BACKEND_URL}/api/auth/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, role: "applicant" }),
       });
-
-      const data = await res.json();
+      const text = await res.text();
+      const data = text ? JSON.parse(text) : {};
       if (!res.ok) {
-        setError(data.message || 'Signup failed');
+        setError(data.message || "Signup failed");
         return;
       }
 
