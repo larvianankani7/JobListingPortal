@@ -31,18 +31,22 @@ const PORT = process.env.PORT || 5000;
 
 // Allow ANY local frontend (3000, 3001, 5173, 3020, etc.)
 app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "http://localhost:5173",
-    "http://localhost:3001",
-    "http://localhost:3002",
-    "http://192.168.1.3:3002",
-    "https://job-listing-portal-web-git-main-larvias-projects-c2bc6b5d.vercel.app"
-  ],
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  origin: (origin, callback) => {
+    const whitelist = [
+      "http://localhost:3000",
+      "https://job-listing-portal-web-git-main-larvias-projects-c2bc6b5d.vercel.app"
+    ];
+    if (!origin || whitelist.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization"],
+  credentials: true
 }));
+app.options("/", cors());
 
 app.use(express.json());
 
